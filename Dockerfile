@@ -1,11 +1,5 @@
-FROM rabbitmq:3.9.13-management
-
-COPY --chown=rabbitmq:rabbitmq rabbitmq-env.conf /etc/rabbitmq/
-COPY --chown=rabbitmq:rabbitmq inter_node_tls.config /etc/rabbitmq/
-COPY --chown=rabbitmq:rabbitmq ca_certificate.pem /etc/rabbitmq/
-COPY --chown=rabbitmq:rabbitmq *rabbit1*.pem /etc/rabbitmq/
-COPY --chown=rabbitmq:rabbitmq rabbit1.conf /etc/rabbitmq/rabbitmq.conf
-
-EXPOSE 15671
+FROM rabbitmq:3.9.13-management-alpine
+COPY --chown=rabbitmq:rabbitmq rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
+COPY --chown=rabbitmq:rabbitmq enabled_plugins /etc/rabbitmq/enabled_plugins
+COPY --chown=rabbitmq:rabbitmq definitions.json /etc/rabbitmq/definitions.json
 EXPOSE 15672
-EXPOSE 25672
